@@ -3,57 +3,91 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🌍 A Terra pede socorro </title>
+<title>🎯 A Terra pede socorro: agir agora é salvar o amanhã</title>
 <style>
   body {
     font-family: "Poppins", sans-serif;
     text-align: center;
-    background: linear-gradient(#b8f1c8, #d8f7ff);
+    background: linear-gradient(135deg, #b8f1c8, #d8f7ff);
     color: #003b2d;
     padding: 30px;
   }
+
   h1 {
     color: #006b52;
+    margin-bottom: 5px;
   }
+
+  h2 {
+    color: #007f60;
+    margin-bottom: 20px;
+  }
+
   .quiz-container {
     background: white;
-    padding: 20px;
+    padding: 25px;
     border-radius: 20px;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     max-width: 600px;
     margin: 0 auto;
+    transition: 0.3s ease;
   }
+
   .stats {
     display: flex;
-    justify-content: space-around;
-    margin-bottom: 10px;
+    justify-content: space-between;
     font-weight: bold;
+    margin-bottom: 10px;
   }
+
   .options button {
     display: block;
     width: 100%;
-    margin: 5px 0;
-    padding: 10px;
-    border-radius: 10px;
+    margin: 8px 0;
+    padding: 12px;
+    border-radius: 12px;
     border: none;
     background: #00b37e;
     color: white;
+    font-size: 15px;
     cursor: pointer;
     transition: 0.2s;
   }
+
   .options button:hover {
     background: #008c65;
   }
+
   .correct {
     background-color: #5ad66f !important;
   }
+
   .wrong {
     background-color: #e05555 !important;
   }
+
   .hidden {
     display: none;
   }
+
+  .time-bar-container {
+    width: 100%;
+    height: 15px;
+    background: #eee;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px 0 20px 0;
+  }
+
+  .time-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #00b37e, #00e6a5);
+    width: 100%;
+    transition: width 1s linear;
+  }
+
   #timer {
+    font-weight: bold;
     color: #c21e1e;
   }
 </style>
@@ -66,8 +100,12 @@
 <div class="quiz-container">
   <div class="stats">
     <div>💚 Vidas: <span id="lives">3</span></div>
-    <div>⏰ Tempo: <span id="timer">45</span>s</div>
     <div>⭐ Fase: <span id="level">1</span></div>
+    <div>⏰ Tempo: <span id="timer">45</span>s</div>
+  </div>
+
+  <div class="time-bar-container">
+    <div id="time-bar" class="time-bar"></div>
   </div>
 
   <h3 id="question">Carregando pergunta...</h3>
@@ -78,7 +116,6 @@
 
 <script>
 const quizData = [
-  // Fase 1 - fácil
   [
     { question: "1️⃣ O que é um desastre natural?",
       options: ["Um evento natural que causa danos", "Um jogo de computador", "Um tipo de planta"],
@@ -90,7 +127,6 @@ const quizData = [
       options: ["Jogar no rio", "Reciclar", "Queimar tudo"],
       answer: 1 }
   ],
-  // Fase 2 - média
   [
     { question: "4️⃣ O que o aquecimento global provoca?",
       options: ["Mais chuvas equilibradas", "Derretimento das geleiras", "Mais florestas"],
@@ -102,7 +138,6 @@ const quizData = [
       options: ["Porque é moda", "Para reduzir impactos ambientais", "Para poluir mais"],
       answer: 1 }
   ],
-  // Fase 3 - difícil
   [
     { question: "7️⃣ O que é efeito estufa?",
       options: ["Camada que mantém o calor da Terra", "Um tipo de planta tropical", "Um fenômeno do espaço"],
@@ -116,9 +151,7 @@ const quizData = [
   ]
 ];
 
-// Tempo diferente por fase
 const faseTempo = [45, 30, 15];
-
 let level = 0;
 let current = 0;
 let lives = 3;
@@ -187,11 +220,12 @@ function nextQuestion() {
 
 function startTimer() {
   timeLeft = faseTempo[level];
-  document.getElementById("timer").textContent = timeLeft;
+  updateTimerUI();
 
   timer = setInterval(() => {
     timeLeft--;
-    document.getElementById("timer").textContent = timeLeft;
+    updateTimerUI();
+
     if (timeLeft <= 0) {
       clearInterval(timer);
       lives--;
@@ -205,10 +239,16 @@ function startTimer() {
   }, 1000);
 }
 
+function updateTimerUI() {
+  document.getElementById("timer").textContent = timeLeft;
+  const percent = (timeLeft / faseTempo[level]) * 100;
+  document.getElementById("time-bar").style.width = percent + "%";
+}
+
 function resetTimer() {
   clearInterval(timer);
   timeLeft = faseTempo[level];
-  document.getElementById("timer").textContent = timeLeft;
+  document.getElementById("time-bar").style.width = "100%";
   startTimer();
 }
 
