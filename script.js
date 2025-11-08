@@ -1,10 +1,10 @@
 const quizData = [
   [
     { question: "1️⃣ O que é um desastre natural?",
-      options: ["Um evento natural que causa danos", "Um jogo de computador", "Um tipo de planta"],
+      options: ["Um evento natural que causa danos", "Desmatamento", "Poluição"],
       answer: 0 },
     { question: "2️⃣ Qual desses é um desastre natural?",
-      options: ["Terremoto", "Reciclagem", "Economia"],
+      options: ["Terremoto", "Poluição industrial de rio", "Queimar resíduos em áreas abertas para reduzir volume"],
       answer: 0 },
     { question: "3️⃣ O que devemos fazer com o lixo?",
       options: ["Jogar no rio", "Reciclar", "Queimar tudo"],
