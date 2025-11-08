@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎯 A Terra pede socorro: agir agora é salvar o amanhã</title>
+<style>
+  body {
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    background: linear-gradient(#b8f1c8, #d8f7ff);
+    color: #003b2d;
+    padding: 30px;
+  }
+  h1 {
+    color: #006b52;
+  }
+  .quiz-container {
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  .options button {
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: #00b37e;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  .options button:hover {
+    background: #008c65;
+  }
+  .correct {
+    background-color: #5ad66f !important;
+  }
+  .wrong {
+    background-color: #e05555 !important;
+  }
+  .hidden {
+    display: none;
+  }
+  #timer {
+    color: #c21e1e;
+  }
+</style>
+</head>
+<body>
+
+<h1>🎯 Tema: A Terra pede socorro</h1>
+<h2>Agir agora é salvar o amanhã 🌎</h2>
+
+<div class="quiz-container">
+  <div class="stats">
+    <div>💚 Vidas: <span id="lives">3</span></div>
+    <div>⏰ Tempo: <span id="timer">45</span>s</div>
+    <div>⭐ Fase: <span id="level">1</span></div>
+  </div>
+
+  <h3 id="question">Carregando pergunta...</h3>
+  <div class="options" id="options"></div>
+
+  <button id="nextBtn" class="hidden" onclick="nextQuestion()">Próxima ➡️</button>
+</div>
+
+<script>
+const quizData = [
+  // Fase 1 - fácil
+  [
+    { question: "1️⃣ O que é um desastre natural?",
+      options: ["Um evento natural que causa danos", "Um jogo de computador", "Um tipo de planta"],
+      answer: 0 },
+    { question: "2️⃣ Qual desses é um desastre natural?",
+      options: ["Terremoto", "Reciclagem", "Economia"],
+      answer: 0 },
+    { question: "3️⃣ O que devemos fazer com o lixo?",
+      options: ["Jogar no rio", "Reciclar", "Queimar tudo"],
+      answer: 1 }
+  ],
+  // Fase 2 - média
+  [
+    { question: "4️⃣ O que o aquecimento global provoca?",
+      options: ["Mais chuvas equilibradas", "Derretimento das geleiras", "Mais florestas"],
+      answer: 1 },
+    { question: "5️⃣ Qual é uma ação sustentável?",
+      options: ["Usar sacolas reutilizáveis", "Deixar a torneira aberta", "Desmatar florestas"],
+      answer: 0 },
+    { question: "6️⃣ Por que devemos economizar energia?",
+      options: ["Porque é moda", "Para reduzir impactos ambientais", "Para poluir mais"],
+      answer: 1 }
+  ],
+  // Fase 3 - difícil
+  [
+    { question: "7️⃣ O que é efeito estufa?",
+      options: ["Camada que mantém o calor da Terra", "Um tipo de planta tropical", "Um fenômeno do espaço"],
+      answer: 0 },
+    { question: "8️⃣ Qual desses é consequência do desmatamento?",
+      options: ["Aumento da biodiversidade", "Perda de habitat e erosão", "Mais florestas"],
+      answer: 1 },
+    { question: "9️⃣ Como podemos agir agora pelo amanhã?",
+      options: ["Ignorando os problemas", "Consumindo com consciência", "Desperdiçando água"],
+      answer: 1 }
+  ]
+];
+
+// Tempo diferente por fase
+const faseTempo = [45, 30, 15];
+
+let level = 0;
+let current = 0;
+let lives = 3;
+let timer;
+let timeLeft;
+let canAnswer = true;
+
+function startQuiz() {
+  showQuestion();
+  startTimer();
+}
+
+function showQuestion() {
+  const q = quizData[level][current];
+  document.getElementById("question").textContent = q.question;
+  const optDiv = document.getElementById("options");
+  optDiv.innerHTML = "";
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement("button");
+    btn.textContent = opt;
+    btn.onclick = () => checkAnswer(i, btn);
+    optDiv.appendChild(btn);
+  });
+  document.getElementById("nextBtn").classList.add("hidden");
+  canAnswer = true;
+  resetTimer();
+}
+
+function checkAnswer(i, btn) {
+  if (!canAnswer) return;
+  canAnswer = false;
+  const q = quizData[level][current];
+  const buttons = document.querySelectorAll("#options button");
+  buttons.forEach(b => b.disabled = true);
+
+  if (i === q.answer) {
+    btn.classList.add("correct");
+  } else {
+    btn.classList.add("wrong");
+    lives--;
+    document.getElementById("lives").textContent = lives;
+  }
+
+  document.getElementById("nextBtn").classList.remove("hidden");
+
+  if (lives <= 0) {
+    gameOver();
+  }
+}
+
+function nextQuestion() {
+  current++;
+  if (current >= quizData[level].length) {
+    level++;
+    if (level >= quizData.length) {
+      endGame();
+      return;
+    } else {
+      alert(`🌿 Parabéns! Você avançou para a fase ${level + 1}!`);
+      current = 0;
+      document.getElementById("level").textContent = level + 1;
+    }
+  }
+  showQuestion();
+}
+
+function startTimer() {
+  timeLeft = faseTempo[level];
+  document.getElementById("timer").textContent = timeLeft;
+
+  timer = setInterval(() => {
+    timeLeft--;
+    document.getElementById("timer").textContent = timeLeft;
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      lives--;
+      document.getElementById("lives").textContent = lives;
+      if (lives <= 0) {
+        gameOver();
+      } else {
+        nextQuestion();
+      }
+    }
+  }, 1000);
+}
+
+function resetTimer() {
+  clearInterval(timer);
+  timeLeft = faseTempo[level];
+  document.getElementById("timer").textContent = timeLeft;
+  startTimer();
+}
+
+function gameOver() {
+  clearInterval(timer);
+  document.querySelector(".quiz-container").innerHTML = `
+    <h2>💔 Fim de jogo!</h2>
+    <p>Suas vidas acabaram...</p>
+    <p>Mas ainda há tempo de salvar o planeta 🌎</p>
+    <button onclick="location.reload()">Tentar novamente</button>
+  `;
+}
+
+function endGame() {
+  clearInterval(timer);
+  document.querySelector(".quiz-container").innerHTML = `
+    <h2>🏆 Parabéns, Guardião da Terra!</h2>
+    <p>Você completou todas as fases do quiz!</p>
+    <p>Continue cuidando do nosso planeta 💚</p>
+    <button onclick="location.reload()">Jogar de novo</button>
+  `;
+}
+
+startQuiz();
+</script>
+</body>
+</html>
