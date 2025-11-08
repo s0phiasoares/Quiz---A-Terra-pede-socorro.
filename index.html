@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎯 A Terra pede socorro</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>🎯 Tema: A Terra pede socorro</h1>
+<h2>Agir agora é salvar o amanhã 🌎</h2>
+
+<div class="quiz-container">
+  <div class="stats">
+    <div>💚 Vidas: <span id="lives">3</span></div>
+    <div>⭐ Fase: <span id="level">1</span></div>
+    <div>⏰ Tempo: <span id="timer">45</span>s</div>
+  </div>
+
+  <div class="time-bar-container">
+    <div id="time-bar" class="time-bar"></div>
+  </div>
+
+  <h3 id="question">Carregando pergunta...</h3>
+  <div class="options" id="options"></div>
+
+  <button id="nextBtn" class="hidden" onclick="nextQuestion()">Próxima ➡️</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
