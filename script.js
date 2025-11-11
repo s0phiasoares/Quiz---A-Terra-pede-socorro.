@@ -34,7 +34,7 @@ const quizData = [
   ]
 ];
 
-const faseTempo = [45, 30, 15];
+const faseTempo = [30, 25, 15];
 let level = 0;
 let current = 0;
 let lives = 3;
