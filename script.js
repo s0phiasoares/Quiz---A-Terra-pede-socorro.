@@ -7,29 +7,29 @@ const quizData = [
       options: ["Terremoto", "Poluição industrial de rio", "Queimar resíduos em áreas abertas para reduzir volume"],
       answer: 0 },
     { question: "3️⃣ O que devemos fazer com o lixo?",
-      options: ["Jogar no rio", "Reciclar", "Queimar tudo"],
-      answer: 1 }
+      options: ["Descartar corretamente e separar para reciclagem", "Reciclar", "Queimar tudo"],
+      answer: 0 }
   ],
   [
     { question: "4️⃣ O que o aquecimento global provoca?",
-      options: ["Mais chuvas equilibradas", "Derretimento das geleiras", "Mais florestas"],
+      options: ["Aumento das áreas de gelo nos polos", "Derretimento das geleiras", "Temperaturas mais quentes em todo o planeta"],
       answer: 1 },
     { question: "5️⃣ Qual é uma ação sustentável?",
-      options: ["Usar sacolas reutilizáveis", "Deixar a torneira aberta", "Desmatar florestas"],
+      options: ["Usar sacolas reutilizáveis", "Substituir áreas de floresta por fazendas de energia solar", "Reciclar materiais sem se preocupar com a redução do consumo"],
       answer: 0 },
     { question: "6️⃣ Por que devemos economizar energia?",
-      options: ["Porque é moda", "Para reduzir impactos ambientais", "Para poluir mais"],
+      options: ["Porque a produção de energia muitas vezes causa impactos ambientais", "Para reduzir impactos ambientais", "Porque quanto mais energia usamos, mais sustentável o sistema se torna"],
       answer: 1 }
   ],
   [
     { question: "7️⃣ O que é efeito estufa?",
-      options: ["Camada que mantém o calor da Terra", "Um tipo de planta tropical", "Um fenômeno do espaço"],
+      options: ["Camada que mantém o calor da Terra", "Um tipo de cultivo agrícola em regiões tropicais","Um fenômeno astronômico que acontece fora da atmosfera"],
       answer: 0 },
     { question: "8️⃣ Qual desses é consequência do desmatamento?",
-      options: ["Aumento da biodiversidade", "Perda de habitat e erosão", "Mais florestas"],
+      options: ["Aumento da absorção de carbono pelas florestas", "Perda de habitat, erosão do solo e desequilíbrio climático", "Criação de novas espécies adaptadas ao desmatamento"],
       answer: 1 },
     { question: "9️⃣ Como podemos agir agora pelo amanhã?",
-      options: ["Ignorando os problemas", "Consumindo com consciência", "Desperdiçando água"],
+      options: ["Consumindo de forma consciente e reduzindo o desperdício", "Aumentando o uso de combustíveis fósseis", "Acreditando que apenas governos e empresas devem agir"],
       answer: 1 }
   ]
 ];
