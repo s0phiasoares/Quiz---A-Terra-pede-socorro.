@@ -79,7 +79,7 @@ function checkAnswer(i, btn) {
   }
 
   if (lives <= 0) {
-    gameOver("Fim de jogo... você não conseguiu ajudar a salvar o planeta Terra 💔🌍");
+    gameOver("Você não conseguiu ajudar a salvar o planeta Terra 💔🌍");
     return;
   }
 
