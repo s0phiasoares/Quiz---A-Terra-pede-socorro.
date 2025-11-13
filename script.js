@@ -79,7 +79,7 @@ function checkAnswer(i, btn) {
   }
 
   if (lives <= 0) {
-    gameOver();
+    gameOver("Fim de jogo... você não conseguiu ajudar a salvar o planeta Terra 💔🌍");
     return;
   }
 
@@ -95,7 +95,7 @@ function nextQuestion() {
   if (current >= quizData[level].length) {
     level++;
     if (level >= quizData.length) {
-      endGame();
+      endGame("🎉 Parabéns, Guardião da Terra! Você completou o quiz e ajudou o planeta! 🏆🌎");
       return;
     } else {
       alert(`🌿 Parabéns! Você avançou para a fase ${level + 1}!`);
@@ -117,14 +117,8 @@ function startTimer() {
 
     if (timeLeft <= 0) {
       clearInterval(timer);
-      lives--;
-      document.getElementById("lives").textContent = lives;
-      if (lives <= 0) {
-        alert("⏰ Tempo esgotado! Fim de jogo 😢");
-        gameOver();
-      } else {
-        nextQuestion();
-      }
+      alert("⏰ Tempo esgotado! Fim de jogo 😢");
+      gameOver("Fim de jogo... você não conseguiu ajudar a salvar o planeta Terra 💔🌍");
     }
   }, 1000);
 }
@@ -142,24 +136,44 @@ function resetTimer() {
   startTimer();
 }
 
-function gameOver() {
+function gameOver(message) {
   clearInterval(timer);
   document.querySelector(".quiz-container").innerHTML = `
     <h2>💔 Fim de jogo!</h2>
-    <p>Fim de jogo... você não ajudou a salvar o planeta Terra 💔🌍</p>
-    <p>Mas ainda há tempo para tentar novamente e fazer a diferença!</p>
+    <p>${message}</p>
     <button onclick="location.reload()">Tentar novamente</button>
   `;
 }
 
-function endGame() {
+function endGame(message) {
   clearInterval(timer);
   document.querySelector(".quiz-container").innerHTML = `
-    <h2>🎉 Parabéns, Guardião da Terra! 🏆🌎</h2>
-    <p>Você completou o quiz e ajudou o planeta!</p>
-    <p>Continue espalhando boas atitudes e cuidando da Terra 💚</p>
+    <h2>${message}</h2>
     <button onclick="location.reload()">Jogar novamente</button>
   `;
+
+  // 🎉 Confete animado
+  const duration = 3 * 1000; // 3 segundos
+  const end = Date.now() + duration;
+
+  (function frame() {
+    confetti({
+      particleCount: 5,
+      angle: 60,
+      spread: 55,
+      origin: { x: 0 },
+    });
+    confetti({
+      particleCount: 5,
+      angle: 120,
+      spread: 55,
+      origin: { x: 1 },
+    });
+
+    if (Date.now() < end) {
+      requestAnimationFrame(frame);
+    }
+  })();
 }
 
 startQuiz();
