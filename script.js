@@ -95,7 +95,7 @@ function nextQuestion() {
   if (current >= quizData[level].length) {
     level++;
     if (level >= quizData.length) {
-      endGame("🎉 Parabéns, Guardião da Terra! Você completou o quiz e ajudou o planeta! 🏆🌎");
+      endGame("🎉 Parabéns Guardião da Terra! Você completou o quiz e ajudou o planeta! 🏆🌎");
       return;
     } else {
       current = 0;
@@ -137,7 +137,7 @@ function resetTimer() {
 function gameOver(message) {
   clearInterval(timer);
   document.querySelector(".quiz-container").innerHTML = `
-    <h2> 🌍💔 Fim de jogo!</h2>
+    <h2> Fim de jogo! 🌍💔 </h2>
     <p>${message}</p>
     <button onclick="location.reload()">Tentar novamente</button>
   `;
