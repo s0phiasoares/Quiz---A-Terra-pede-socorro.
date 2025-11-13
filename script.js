@@ -28,7 +28,7 @@ const quizData = [
     { question: "8️⃣ Qual desses é consequência do desmatamento? 🌲",
       options: ["Aumento da absorção de carbono pelas florestas", "Perda de habitat, erosão do solo e desequilíbrio climático", "Criação de novas espécies adaptadas ao desmatamento"],
       answer: 1 },
-    { question: "9️⃣ Como podemos agir agora pelo amanhã?",
+    { question: "9️⃣ Como podemos agir agora pelo amanhã? 🌞",
       options: ["Consumindo de forma consciente e reduzindo o desperdício", "Aumentando o uso de combustíveis fósseis", "Acreditando que apenas governos e empresas devem agir"],
       answer: 0 }
   ]
@@ -95,7 +95,7 @@ function nextQuestion() {
   if (current >= quizData[level].length) {
     level++;
     if (level >= quizData.length) {
-      endGame("🎉 Parabéns Guardião da Terra! Você completou o quiz e ajudou o planeta! 🏆🌎");
+      endGame(" 🎉🌎 Parabéns Guardião da Terra! Você completou o quiz e ajudou o planeta!🥇🌿");
       return;
     } else {
       current = 0;
