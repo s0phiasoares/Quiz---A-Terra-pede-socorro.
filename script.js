@@ -146,7 +146,7 @@ function gameOver() {
   clearInterval(timer);
   document.querySelector(".quiz-container").innerHTML = `
     <h2>💔 Fim de jogo!</h2>
-    <p>Fim de jogo... você não conseguiu ajudar a salvar o planeta Terra 💔🌍</p>
+    <p>Fim de jogo... você não ajudou a salvar o planeta Terra 💔🌍</p>
     <p>Mas ainda há tempo para tentar novamente e fazer a diferença!</p>
     <button onclick="location.reload()">Tentar novamente</button>
   `;
