@@ -79,7 +79,7 @@ function checkAnswer(i, btn) {
   }
 
   if (lives <= 0) {
-    gameOver("Você não conseguiu ajudar a salvar o planeta Terra 💔🌍");
+    gameOver("Você não conseguiu ajudar a salvar o planeta Terra ☹️🌍");
     return;
   }
 
@@ -137,7 +137,7 @@ function resetTimer() {
 function gameOver(message) {
   clearInterval(timer);
   document.querySelector(".quiz-container").innerHTML = `
-    <h2> Fim de jogo! 🌍💔 </h2>
+    <h2> Fim de jogo! 💔 </h2>
     <p>${message}</p>
     <button onclick="location.reload()">Tentar novamente</button>
   `;
