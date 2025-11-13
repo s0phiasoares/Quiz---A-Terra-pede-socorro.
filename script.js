@@ -98,7 +98,6 @@ function nextQuestion() {
       endGame("🎉 Parabéns, Guardião da Terra! Você completou o quiz e ajudou o planeta! 🏆🌎");
       return;
     } else {
-      alert(`🌿 Parabéns! Você avançou para a fase ${level + 1}!`);
       current = 0;
       document.getElementById("level").textContent = level + 1;
     }
