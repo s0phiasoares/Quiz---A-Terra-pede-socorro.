@@ -116,7 +116,7 @@ function startTimer() {
 
     if (timeLeft <= 0) {
       clearInterval(timer);
-      gameOver("⏰ Tempo esgotado! Fim de jogo 💔🌍");
+      gameOver("⏰ Tempo esgotado!");
     }
   }, 1000);
 }
@@ -137,7 +137,7 @@ function resetTimer() {
 function gameOver(message) {
   clearInterval(timer);
   document.querySelector(".quiz-container").innerHTML = `
-    <h2>💔 Fim de jogo!</h2>
+    <h2> 🌍💔 Fim de jogo!</h2>
     <p>${message}</p>
     <button onclick="location.reload()">Tentar novamente</button>
   `;
