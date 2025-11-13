@@ -116,7 +116,7 @@ function startTimer() {
 
     if (timeLeft <= 0) {
       clearInterval(timer);
-      gameOver("⏰ Tempo esgotado! Fim de jogo 😢 você não conseguiu ajudar a salvar o planeta Terra 💔🌍");
+      gameOver("⏰ Tempo esgotado! Fim de jogo 💔🌍");
     }
   }, 1000);
 }
