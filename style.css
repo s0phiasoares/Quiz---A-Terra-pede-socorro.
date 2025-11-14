@@ -6,6 +6,54 @@ body {
     padding: 30px;
 }
 
+/* 🎯 MENU DE BOAS-VINDAS + REGRAS */
+.menu {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    margin-bottom: 30px;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.menu-title {
+    color: #033f31;
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.menu-subtitle {
+    color: #007f60;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.menu-rules {
+    background: #e8fff4;
+    padding: 15px;
+    border-radius: 15px;
+    text-align: left;
+}
+
+.menu-rules h3 {
+    margin-bottom: 10px;
+    color: #006b50;
+}
+
+.menu-rules ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.menu-rules li {
+    margin: 6px 0;
+    font-size: 15px;
+    color: #004d3b;
+}
+
+/* 🎮 CONTEÚDO DO QUIZ */
 h1 {
     color: #033f31;
     margin-bottom: 3px;
